@@ -91,17 +91,17 @@ namespace поздравлятор
             return res;
         }
 
-        static void showBirthdays(List<Birthday> AllBirthdays, int i)
+        static void showBirthdays(List<Birthday> allBirthdays, int i)
         {
             int n = 0;
             Console.WriteLine("\n\tСегодняшние дни рождения: ");
             for (int j = 0; j < i; j++)
             {
-                if (DateTime.Now.Day == AllBirthdays[j].Day && DateTime.Now.Month == AllBirthdays[j].Month)
+                if (DateTime.Now.Day == allBirthdays[j].Day && DateTime.Now.Month == allBirthdays[j].Month)
                 {
-                    Console.WriteLine("\t{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(n + 1), AllBirthdays[j].Name, AllBirthdays[j].Day, whichMonth(AllBirthdays[j].Month), DateTime.Now.Year - AllBirthdays[j].Year, howOld(DateTime.Now.Year - AllBirthdays[j].Year));
+                    Console.WriteLine("\t{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(n + 1), allBirthdays[j].Name, allBirthdays[j].Day, whichMonth(allBirthdays[j].Month), DateTime.Now.Year - allBirthdays[j].Year, howOld(DateTime.Now.Year - allBirthdays[j].Year));
                     n++;
-                    AllBirthdays[j].IsTexted = true;
+                    allBirthdays[j].IsTexted = true;
                 }
             }
             if (n == 0)
@@ -113,11 +113,11 @@ namespace поздравлятор
             Console.WriteLine("\n\tДни рождения ближайший месяц: ");
             for (int j = 0; j < i; j++)
             {
-                if ((DateTime.Now.Day < AllBirthdays[j].Day && DateTime.Now.Month == AllBirthdays[j].Month) || (DateTime.Now.Day > AllBirthdays[j].Day && (AllBirthdays[j].Month - DateTime.Now.Month == 1 || AllBirthdays[j].Month - DateTime.Now.Month == -11)))
+                if ((DateTime.Now.Day < allBirthdays[j].Day && DateTime.Now.Month == allBirthdays[j].Month) || (DateTime.Now.Day > allBirthdays[j].Day && (allBirthdays[j].Month - DateTime.Now.Month == 1 || allBirthdays[j].Month - DateTime.Now.Month == -11)))
                 {
-                    Console.WriteLine("\t{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(n + 1), AllBirthdays[j].Name, AllBirthdays[j].Day, whichMonth(AllBirthdays[j].Month), DateTime.Now.Year - AllBirthdays[j].Year, howOld(DateTime.Now.Year - AllBirthdays[j].Year));
+                    Console.WriteLine("\t{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(n + 1), allBirthdays[j].Name, allBirthdays[j].Day, whichMonth(allBirthdays[j].Month), DateTime.Now.Year - allBirthdays[j].Year, howOld(DateTime.Now.Year - allBirthdays[j].Year));
                     n++;
-                    AllBirthdays[j].IsTexted = true;
+                    allBirthdays[j].IsTexted = true;
                 }
             }
             if (n == 0)
@@ -129,11 +129,11 @@ namespace поздравлятор
             Console.WriteLine("\n\tВсе остальные дни рождения: ");
             for (int j = 0; j < i; j++)
             {
-                if (AllBirthdays[j].IsTexted == false)
+                if (allBirthdays[j].IsTexted == false)
                 {
-                    Console.WriteLine("\t{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(n + 1), AllBirthdays[j].Name, AllBirthdays[j].Day, whichMonth(AllBirthdays[j].Month), DateTime.Now.Year - AllBirthdays[j].Year, howOld(DateTime.Now.Year - AllBirthdays[j].Year));
+                    Console.WriteLine("\t{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(n + 1), allBirthdays[j].Name, allBirthdays[j].Day, whichMonth(allBirthdays[j].Month), DateTime.Now.Year - allBirthdays[j].Year, howOld(DateTime.Now.Year - allBirthdays[j].Year));
                     n++;
-                    AllBirthdays[j].IsTexted = true;
+                    allBirthdays[j].IsTexted = true;
                 }
             }
             if (n == 0)
@@ -143,14 +143,14 @@ namespace поздравлятор
 
             for (int j = 0; j < i; j++)
             {
-                AllBirthdays[j].IsTexted = false;
+                allBirthdays[j].IsTexted = false;
             }
         }
 
         static void Main(string[] args)
         {
             string path = "C:\\Users\\Света\\source\\repos\\поздравлятор\\Birthdays.txt"; //Укажите пожалуйста свой путь к текстовому файлу
-            List<Birthday> AllBirthdays = new List<Birthday>();
+            List<Birthday> allBirthdays = new List<Birthday>();
             int choice, i = 0, cont = 1, number, change;
             string name, date, number1, change1, cont1, text;
             DateTime cooldate;
@@ -164,7 +164,7 @@ namespace поздравлятор
                     while ((text = FileReader.ReadLine()) != null)
                     {
                         string[] data = text.Split(',');
-                        AllBirthdays.Add(new Birthday(data[0], Convert.ToInt32(data[1]), Convert.ToInt32(data[2]), Convert.ToInt32(data[3])));
+                        allBirthdays.Add(new Birthday(data[0], Convert.ToInt32(data[1]), Convert.ToInt32(data[2]), Convert.ToInt32(data[3])));
                         i++;
                     }
                 }
@@ -175,7 +175,7 @@ namespace поздравлятор
             {
                 if (i > 0)
                 {
-                    showBirthdays(AllBirthdays, i);
+                    showBirthdays(allBirthdays, i);
                 }
                 do
                 {
@@ -204,10 +204,10 @@ namespace поздравлятор
                                     check = true;
                                 }
                             } while (check);
-                            AllBirthdays.Add(new Birthday(name, cooldate.Day, cooldate.Month, cooldate.Year));
+                            allBirthdays.Add(new Birthday(name, cooldate.Day, cooldate.Month, cooldate.Year));
                             using (StreamWriter FileWriter = new StreamWriter(path, true))
                             {
-                                FileWriter.WriteLine("{0}, {1}, {2}, {3}", AllBirthdays[i].Name, AllBirthdays[i].Day, AllBirthdays[i].Month, AllBirthdays[i].Year);
+                                FileWriter.WriteLine("{0}, {1}, {2}, {3}", allBirthdays[i].Name, allBirthdays[i].Day, allBirthdays[i].Month, allBirthdays[i].Year);
                                 FileWriter.Close();
                             }
                             i++;
@@ -222,13 +222,13 @@ namespace поздравлятор
                                 {
                                     Console.WriteLine("\nАктуальный список дней рождения:\n");
                                     for (int j = 0; j < i; j++)
-                                        Console.WriteLine("{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(j + 1), AllBirthdays[j].Name, AllBirthdays[j].Day, whichMonth(AllBirthdays[j].Month), DateTime.Now.Year - AllBirthdays[j].Year, howOld(DateTime.Now.Year - AllBirthdays[j].Year));
+                                        Console.WriteLine("{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(j + 1), allBirthdays[j].Name, allBirthdays[j].Day, whichMonth(allBirthdays[j].Month), DateTime.Now.Year - allBirthdays[j].Year, howOld(DateTime.Now.Year - allBirthdays[j].Year));
                                     Console.WriteLine("\nЧей день рождения удалим? Введите номер");
                                     number1 = Console.ReadLine();
                                     if (Int32.TryParse(number1, out number) && Convert.ToInt32(number1) <= i && Convert.ToInt32(number1) > 0)
                                     {
                                         number = Convert.ToInt32(number1);
-                                        AllBirthdays.Remove(AllBirthdays[number - 1]);
+                                        allBirthdays.Remove(allBirthdays[number - 1]);
                                         check = false;
                                         i--;
                                     }
@@ -256,7 +256,7 @@ namespace поздравлятор
                                 {
                                     Console.WriteLine("\nАктуальный список дней рождения:\n");
                                     for (int j = 0; j < i; j++)
-                                        Console.WriteLine("{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(j + 1), AllBirthdays[j].Name, AllBirthdays[j].Day, whichMonth(AllBirthdays[j].Month), DateTime.Now.Year - AllBirthdays[j].Year, howOld(DateTime.Now.Year - AllBirthdays[j].Year));
+                                        Console.WriteLine("{0}.) {1}\t\t{2} {3} \t Исполняется {4} {5}", Convert.ToInt32(j + 1), allBirthdays[j].Name, allBirthdays[j].Day, whichMonth(allBirthdays[j].Month), DateTime.Now.Year - allBirthdays[j].Year, howOld(DateTime.Now.Year - allBirthdays[j].Year));
                                     Console.WriteLine("\nЧей день рождения редактируем? Введите номер");
                                     number1 = Console.ReadLine();
                                     if (Int32.TryParse(number1, out number) && Convert.ToInt32(number1) <= i && Convert.ToInt32(number1) > 0)
@@ -272,7 +272,7 @@ namespace поздравлятор
                                                 check = false;
                                                 Console.WriteLine("\nВведите новое имя:");
                                                 name = Console.ReadLine();
-                                                AllBirthdays[number - 1].Name = name;
+                                                allBirthdays[number - 1].Name = name;
                                             }
                                             else if (change == 2)
                                             {
@@ -283,9 +283,9 @@ namespace поздравлятор
                                                 {
                                                     cooldate = Convert.ToDateTime(date);
                                                     check = false;
-                                                    AllBirthdays[number - 1].Day = cooldate.Day;
-                                                    AllBirthdays[number - 1].Month = cooldate.Month;
-                                                    AllBirthdays[number - 1].Year = cooldate.Year;
+                                                    allBirthdays[number - 1].Day = cooldate.Day;
+                                                    allBirthdays[number - 1].Month = cooldate.Month;
+                                                    allBirthdays[number - 1].Year = cooldate.Year;
                                                 }
                                                 else
                                                 {
@@ -330,7 +330,7 @@ namespace поздравлятор
                     {
                         for (int j = 0; j < i; j++) 
                         {
-                            FileWriter.WriteLine("{0}, {1}, {2}, {3}", AllBirthdays[j].Name, AllBirthdays[j].Day, AllBirthdays[j].Month, AllBirthdays[j].Year);
+                            FileWriter.WriteLine("{0}, {1}, {2}, {3}", allBirthdays[j].Name, allBirthdays[j].Day, allBirthdays[j].Month, allBirthdays[j].Year);
                         }
                         FileWriter.Close();
                     }
@@ -338,7 +338,7 @@ namespace поздравлятор
                 if (i > 0)
                 {
                     Console.WriteLine("\n\tГотово! Актуальный список дней рождения:\n");
-                    showBirthdays(AllBirthdays, i);
+                    showBirthdays(allBirthdays, i);
                 }
                 else
                     Console.WriteLine("\nГотово! Сейчас нет ни одной записи.\n");
